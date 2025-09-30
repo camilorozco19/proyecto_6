@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+      <h4>Análisis de Oportunidades</h4>
+      <a class="btn btn-outline-secondary" href="{{ url_for('upload_page') }}">Subir nuevo archivo</a>
+    </div>
+
+    {% if error %}
+      <div class="alert alert-warning mt-3">{{ error }}</div>
+    {% endif %}
+
+    {% if table_html %}
+      <p class="text-muted">{{ summary.note }}</p>
+      <div class="row">
+        <div class="col-md-6">
+          <h6>Top categorías (tabla)</h6>
+          <div class="table-responsive">{{ table_html|safe }}</div>
+        </div>
+        <div class="col-md-6">
+          <h6>Mapa de negocios</h6>
+          <div id="map" style="height:400px;"></div>
+        </div>
+      </div>
+
+      <!-- Script del mapa -->
+      <script>
+        const markers = {{ markers|safe }};
+        const map = L.map('map').setView([20.0, 0.0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        if (markers.length > 0) {
+          const group = [];
+          markers.forEach(m => {
+            const popup = `<b>${m.name}</b><br>${m.categories}<br>Reseñas: ${m.review_count}<br>${m.city}`;
+            const mk = L.marker([m.lat, m.lon]).bindPopup(popup);
+            mk.addTo(map);
+            group.push([m.lat, m.lon]);
+          });
+          map.fitBounds(group, {padding: [20,20]});
+        }
+      </script>
+
+      <!-- 🔥 Recomendación con imagen flotante + máquina de escribir -->
+      {% if summary.recommendation %}
+      <div class="row mt-5 align-items-center">
+        <div class="col-md-2 text-center">
+          <img src="https://img.icons8.com/fluency/96/artificial-intelligence.png" 
+               alt="IA" class="img-fluid floating">
+        </div>
+        <div class="col-md-10">
+          <div class="alert alert-info p-4 shadow-lg">
+            <h5>🤖 Recomendación del análisis</h5>
+            <p id="recommendationText" class="mb-0"></p>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        /* Imagen flotante */
+        .floating {
+          animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+          0%   { transform: translateY(0px); }
+          50%  { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+        }
+      </style>
+
+      <script>
+        const text = `{{ summary.recommendation | safe }}`;
+        let i = 0;
+        function typeWriter() {
+          if (i < text.length) {
+            document.getElementById("recommendationText").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 40);
+          }
+        }
+        typeWriter();
+      </script>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

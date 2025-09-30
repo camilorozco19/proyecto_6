@@ -1,0 +1,5 @@
+business_id,name,categories,review_count,city,latitude,longitude
+mx1,Taquería El Rápido,"Restaurantes, Tacos, Comida rápida",80,Ciudad de México,19.4326,-99.1332
+mx2,Restaurante Gourmet Azteca,"Restaurantes, Mexicana, Gourmet",150,Guadalajara,20.6597,-103.3496
+mx3,Mariscos del Pacífico,"Restaurantes, Mariscos",60,Mazatlán,23.2494,-106.4111
+mx4,Vegano Verde Vida,"Restaurantes, Vegano, Saludable",90,Monterrey,25.6866,-100.3161

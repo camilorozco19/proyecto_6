@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h4>Subir archivos CSV / Excel / JSON</h4>
+        {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+        {% if success %}<div class="alert alert-success">{{ success }}</div>{% endif %}
+        <form method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <input class="form-control" type="file" name="file" id="file" multiple required>
+            <small class="form-text text-muted">
+              Puedes seleccionar <strong>uno o varios archivos</strong> al mismo tiempo (ej: <code>business.json</code> y <code>review.json</code>).
+            </small>
+          </div>
+          <button class="btn btn-primary" type="submit">Subir</button>
+        </form>
+        <hr>
+        <p class="small text-muted">
+          Formato sugerido: <code>business_id, name, categories, review_count, city, latitude, longitude</code>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

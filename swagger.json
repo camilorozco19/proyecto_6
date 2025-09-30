@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Mini DSS API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/login": {
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "credentials",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "token"
+          }
+        }
+      }
+    },
+    "/api/upload": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "file saved"
+          }
+        }
+      }
+    },
+    "/api/analysis": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "analysis result"
+          }
+        }
+      }
+    }
+  }
+}

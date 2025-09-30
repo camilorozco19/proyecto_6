@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Banner institucional -->
+<div class="banner-ucaldas text-center">
+  <img src="{{ url_for('static', filename='images/Fac_IA_ING.png') }}" 
+       alt="Universidad de Caldas" 
+       class="img-fluid mx-auto d-block banner-img">
+</div>
+
+<!-- Título principal -->
+<div class="text-center my-4">
+  <h1 class="display-5 fw-bold text-primary mb-3">
+     Sistema de Soporte a Decisiones Empresariales
+  </h1>
+  <p class="lead text-muted mb-4">
+    Proyecto final – Ingeniería en Informática, Universidad de Caldas<br>
+     Desarrollo de Sistemas de Información Empresariales
+  </p>
+</div>
+
+<!-- Tarjetas de navegación -->
+<div class="row text-center g-4">
+  <div class="col-md-4">
+    <div class="card shadow-lg border-0 h-100 hover-card">
+      <div class="card-body">
+        <i class="bi bi-upload display-4 text-success mb-3"></i>
+        <h5 class="card-title">Cargar Datos</h5>
+        <p class="text-muted">Sube archivos CSV, Excel o JSON para analizar oportunidades de negocio.</p>
+        <a href="{{ url_for('upload_page') }}" class="btn btn-success">Subir</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-lg border-0 h-100 hover-card">
+      <div class="card-body">
+        <i class="bi bi-graph-up-arrow display-4 text-primary mb-3"></i>
+        <h5 class="card-title">Análisis</h5>
+        <p class="text-muted">Visualiza gráficas, tablas y un mapa interactivo con recomendaciones de IA.</p>
+        <a href="{{ url_for('analysis_page') }}" class="btn btn-primary">Ver análisis</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-lg border-0 h-100 hover-card">
+      <div class="card-body">
+        <i class="bi bi-code-slash display-4 text-dark mb-3"></i>
+        <h5 class="card-title">API y Documentación</h5>
+        <p class="text-muted">Consulta la API REST con autenticación JWT y documentación en Swagger.</p>
+        <a href="/api/docs" class="btn btn-dark">Ver API</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Integrantes -->
+<div class="card shadow-sm border-0 mt-5">
+  <div class="card-body text-center">
+    <h5 class="fw-bold text-secondary">Integrantes del Proyecto</h5>
+    <p class="mb-1"> Camilo Orozco Gutiérrez</p>
+    <p class="mb-1"> Katherine Sánchez González</p>
+    <p class="mb-0"> Chelsyn Valentina Vélez</p>
+  </div>
+</div>
+
+<!-- Estilos adicionales -->
+<style>
+/* Banner institucional */
+.banner-ucaldas {
+  background: linear-gradient(90deg, #004aad, #0078d7); /* Azul degradado institucional */
+  padding: 10px 0; /* espacio arriba y abajo */
+  margin-top: -10px; /* lo pega más al borde azul del navbar */
+}
+
+.banner-img {
+  max-height: 120px; /* controla el alto del banner */
+  object-fit: contain;
+}
+
+/* Tarjetas con hover */
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 1rem 2rem rgba(0,0,0,.15);
+}
+</style>
+
+{% endblock %}

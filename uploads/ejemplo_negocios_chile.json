@@ -1,0 +1,29 @@
+[
+  {
+    "business_id": "cl1",
+    "name": "Hotel Santiago Centro",
+    "categories": "Hoteles, 4 estrellas",
+    "review_count": 95,
+    "city": "Santiago",
+    "latitude": -33.4489,
+    "longitude": -70.6693
+  },
+  {
+    "business_id": "cl2",
+    "name": "Hostal Valparaíso Joven",
+    "categories": "Hostales, Económico",
+    "review_count": 45,
+    "city": "Valparaíso",
+    "latitude": -33.0472,
+    "longitude": -71.6127
+  },
+  {
+    "business_id": "cl3",
+    "name": "Librería Austral",
+    "categories": "Librerías, Académica",
+    "review_count": 60,
+    "city": "Concepción",
+    "latitude": -36.8201,
+    "longitude": -73.0444
+  }
+]

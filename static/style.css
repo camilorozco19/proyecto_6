@@ -1,0 +1,4 @@
+
+body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+.card { border-radius: 12px; }
+#map { border: 1px solid #ddd; border-radius: 8px; }

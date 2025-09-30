@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2 class="text-center mb-4">📊 Análisis de Brecha entre Oferta y Demanda</h2>
+
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% else %}
+    <div class="table-responsive shadow-sm rounded p-3 bg-white">
+      {{ table_html|safe if table_html else "No hay datos para mostrar." }}
+    </div>
+
+    {% if recomendacion %}
+      <div class="alert alert-info mt-4 shadow-sm rounded">
+        <h5 class="fw-bold">🤖 Recomendación para la toma de decisiones</h5>
+        <p id="recommendation-gap"></p>
+      </div>
+    {% endif %}
+
+    <div class="mt-5">
+      <h4 class="text-center">📈 Brecha por categoría (Top 10)</h4>
+      <canvas id="gapChart" height="120"></canvas>
+    </div>
+  {% endif %}
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('gapChart').getContext('2d');
+  const labels = {{ chart_labels|tojson if chart_labels else '[]' }};
+  const data = {{ chart_data|tojson if chart_data else '[]' }};
+
+  if (labels.length && data.length) {
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Brecha (Demanda - Oferta)',
+          data: data,
+          backgroundColor: 'rgba(54, 162, 235, 0.7)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => 'Brecha: ' + ctx.parsed.y
+            }
+          }
+        },
+        scales: {
+          x: { ticks: { font: { size: 12 } } },
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: 'Cantidad', font: { size: 14, weight: 'bold' } }
+          }
+        }
+      }
+    });
+  } else {
+    ctx.font = "16px Arial";
+    ctx.fillText("No hay datos disponibles para el gráfico", 10, 50);
+  }
+</script>
+
+<!-- Efecto máquina de escribir -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const text = `{{ recomendacion|safe }}`;
+  const el = document.getElementById("recommendation-gap");
+  let i = 0;
+  function typeWriter() {
+    if (i < text.length) {
+      el.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 30);
+    }
+  }
+  typeWriter();
+});
+</script>
+
+<style>
+#recommendation-gap {
+  font-family: monospace;
+  white-space: pre-wrap;
+  border-right: 2px solid #333;
+  animation: blink 0.8s infinite;
+}
+@keyframes blink {
+  0%, 50% { border-color: transparent; }
+  51%, 100% { border-color: #333; }
+}
+</style>
+{% endblock %}

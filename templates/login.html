@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h3 class="card-title">Iniciar sesión</h3>
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">Usuario</label>
+            <input class="form-control" name="username" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input class="form-control" name="password" type="password" required>
+          </div>
+          <button class="btn btn-primary" type="submit">Entrar</button>
+        </form>
+        <hr>
+        <p class="small text-muted">Nota: admin: podra cargar datos y hacer el analisis de  archivos, Analyst no podra subir archivos pero si analizar, Las credenciales de prueba son : <strong>admin/admin123</strong>, <strong>analyst/analyst123</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

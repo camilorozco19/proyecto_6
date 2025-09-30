@@ -1,0 +1,29 @@
+[
+  {
+    "business_id": "co1",
+    "name": "Cafetería Aroma Andino",
+    "categories": "Cafeterías, Postres",
+    "review_count": 50,
+    "city": "Bogotá",
+    "latitude": 4.711,
+    "longitude": -74.0721
+  },
+  {
+    "business_id": "co2",
+    "name": "Restaurante El Sabor Paisa",
+    "categories": "Restaurantes, Tradicional",
+    "review_count": 120,
+    "city": "Medellín",
+    "latitude": 6.2476,
+    "longitude": -75.5658
+  },
+  {
+    "business_id": "co3",
+    "name": "Heladería Caribe",
+    "categories": "Heladerías, Postres",
+    "review_count": 40,
+    "city": "Cartagena",
+    "latitude": 10.391,
+    "longitude": -75.4794
+  }
+]
